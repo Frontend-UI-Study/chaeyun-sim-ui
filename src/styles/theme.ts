@@ -9,6 +9,11 @@ const colors = {
     light: '#BA68C8',
     dark: '#7B1FA2',
   },
+  default: {
+    main: '#D6D6D6',
+    light: '#E0E0E0',
+    dark: '#BDBDBD',
+  },
   error: {
     main: '#D32F2F',
     light: '#EF5350',
@@ -19,6 +24,7 @@ const colors = {
     light: '#4CAF50',
     dark: '#1B5E20',
   },
+  black: '#242424',
 };
 
 const theme = {
