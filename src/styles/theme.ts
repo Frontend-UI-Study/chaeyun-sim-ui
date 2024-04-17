@@ -1,4 +1,19 @@
-const colors = {
+interface ColorSet {
+  main: string;
+  light: string;
+  dark: string;
+}
+
+export interface ThemeColors {
+  primary: ColorSet;
+  secondary: ColorSet;
+  default: ColorSet;
+  error: ColorSet;
+  success: ColorSet;
+  [key: string]: ColorSet;
+}
+
+const colors: ThemeColors = {
   primary: {
     main: '#1976D2',
     light: '#42A5F5',
@@ -24,7 +39,11 @@ const colors = {
     light: '#4CAF50',
     dark: '#1B5E20',
   },
-  black: '#242424',
+  black: {
+    main: '#242424',
+    light: '#242424',
+    dark: '#242424',
+  },
 };
 
 const theme = {
