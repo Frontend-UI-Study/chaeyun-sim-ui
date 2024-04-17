@@ -1,95 +1,66 @@
 import styled, { css } from 'styled-components';
 import { ButtonContainerProps } from './Button.interface';
-import { flexbox } from '../../../styles/flex-box';
+import { flexbox } from '../../../styles/common/flex-box';
 import theme from '../../../styles/theme';
 
 const flexCenter = () => `
   ${flexbox({ dir: 'row', justify: 'center', align: 'center' })}
 `;
 
+const getColorStyle = (color: string, variant: string) => css`
+  background-color: ${variant === 'filled' ? theme.colors[color].main : 'transparent'};
+  color: ${variant === 'filled' ? 'white' : theme.colors[color].main};
+  border-color: ${variant === 'outlined' ? theme.colors[color].main : 'transparent'};
+`;
+
+const getHoverBackgroundColor = (colorKey: string, variant: 'filled' | 'outlined' | 'ghost') => {
+  if (variant === 'filled') {
+    return theme.colors[colorKey].dark;
+  }
+  return 'transparent';
+};
+
 const sizeStyles = css<ButtonContainerProps>`
   ${props =>
-    props.size === 'large' &&
+    props.size === 'lg' &&
     css`
-      width: 110px;
+      width: 230px;
     `}
 
   ${props =>
-    props.size === 'medium' &&
+    props.size === 'md' &&
     css`
-      width: 74px;
+      width: 150px;
     `}
 
   ${props =>
-    props.size === 'small' &&
+    props.size === 'sm' &&
+    css`
+      width: 84px;
+    `}
+
+  ${props =>
+    props.size === 'xs' &&
     css`
       width: 38px;
     `}
 `;
 
 const colorStyles = css<ButtonContainerProps>`
-  ${props =>
-    props.color === 'primary' &&
-    css<ButtonContainerProps>`
-      background-color: ${props.variant === 'filled' ? theme.colors.primary.main : 'transparent'};
-      color: ${props.variant === 'filled' ? 'white' : theme.colors.primary.main};
-      border-color: ${props.variant === 'outlined' ? theme.colors.primary.main : 'transparent'};
-    `}
-
-  ${props =>
-    props.color === 'secondary' &&
-    css<ButtonContainerProps>`
-      background-color: ${props.variant === 'filled' ? theme.colors.secondary.main : 'transparent'};
-      color: ${props.variant === 'filled' ? 'white' : theme.colors.secondary.main};
-      border-color: ${props.variant === 'outlined' ? theme.colors.secondary.main : 'transparent'};
-    `}
-
-      ${props =>
-    props.color === 'default' &&
-    css<ButtonContainerProps>`
-      background-color: ${props.variant === 'filled' ? theme.colors.default.main : 'transparent'};
-      color: ${props.variant === 'filled' ? 'white' : theme.colors.default.main};
-      border-color: ${props.variant === 'outlined' ? theme.colors.default.main : 'transparent'};
-    `}
-
-        ${props =>
-    props.color === 'black' &&
-    css<ButtonContainerProps>`
-      background-color: transparent;
-      color: ${theme.colors.black};
-      border-color: transparent;
-    `}
+  ${props => props.color === 'primary' && getColorStyle('primary', props.variant!)}
+  ${props => props.color === 'secondary' && getColorStyle('secondary', props.variant!)}
+  ${props => props.color === 'default' && getColorStyle('default', props.variant!)}
+  ${props => props.color === 'error' && getColorStyle('error', props.variant!)}
+  ${props => props.color === 'success' && getColorStyle('success', props.variant!)}
+  ${props => props.color === 'black' && getColorStyle('black', props.variant!)}
 `;
 
 const hoverStyles = css<ButtonContainerProps>`
-  ${props =>
-    props.color === 'primary' &&
-    css<ButtonContainerProps>`
-      &:hover {
-        background-color: ${props.variant === 'filled' ? theme.colors.primary.dark : 'transparent'};
-        text-decoration: ${props.variant === 'ghost' ? 'underline' : 'none'};
-      }
-    `}
-
-  ${props =>
-    props.color === 'secondary' &&
-    css<ButtonContainerProps>`
-      &:hover {
-        background-color: ${props.variant === 'filled'
-          ? theme.colors.secondary.dark
-          : 'transparent'};
-        text-decoration: ${props.variant === 'ghost' ? 'underline' : 'none'};
-      }
-    `}
-
-      ${props =>
-    props.color === 'default' &&
-    css<ButtonContainerProps>`
-      &:hover {
-        background-color: ${props.variant === 'filled' ? theme.colors.default.dark : 'transparent'};
-        text-decoration: ${props.variant === 'ghost' ? 'underline' : 'none'};
-      }
-    `}
+  &:hover {
+    background-color: ${props =>
+      props.disabled ? 'none' : getHoverBackgroundColor(props.color!, props.variant!)};
+    text-decoration: ${props => (props.variant === 'ghost' ? 'underline' : 'none')};
+  }
 `;
 
 const ButtonContainer = styled.button.attrs(props => ({

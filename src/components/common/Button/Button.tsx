@@ -21,11 +21,11 @@ export interface ButtonProps extends AdditionalProps {
   /** Text */
   text?: string;
   /** Size */
-  size?: 'small' | 'medium' | 'large';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   /** Variant */
   variant: 'filled' | 'outlined' | 'ghost';
   /** Color */
-  color?: 'primary' | 'secondary' | 'default' | 'black';
+  color?: 'primary' | 'secondary' | 'default' | 'error' | 'success' | 'black';
   /** Style */
   style?: CSSProperties;
   /** OnClick */
@@ -33,7 +33,7 @@ export interface ButtonProps extends AdditionalProps {
 }
 
 const Button = ({
-  size = 'medium',
+  size = 'sm',
   text = 'Button',
   color = 'primary',
   isLoading = false,
@@ -59,18 +59,18 @@ const Button = ({
         style={style}
       >
         {renderStartIcon && (
-          <Row>
+          <Row style={{ marginRight: withNoText ? 0 : '5px' }}>
             {renderStartIcon({
-              style: { color: 'white', width: 20, height: 20 },
+              style: { color: 'white', width: 25, height: 25 },
             })}
           </Row>
         )}
         {isLoading && <img src={'/Spinner.gif'} alt="Spinner" width={30} />}
         {!withNoText && <CenterDiv>{isLoading ? 'Loading...' : text}</CenterDiv>}
         {renderEndIcon && (
-          <Row>
+          <Row style={{ marginLeft: withNoText ? 0 : '5px' }}>
             {renderEndIcon({
-              style: { color: 'white', width: 20, height: 20 },
+              style: { color: 'white', width: 25, height: 25 },
             })}
           </Row>
         )}

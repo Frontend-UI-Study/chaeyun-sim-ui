@@ -1,5 +1,5 @@
 export interface ButtonContainerProps {
-  size?: 'small' | 'medium' | 'large';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   variant?: 'filled' | 'outlined' | 'ghost';
   color?: string;
   isBottomFixed?: boolean;
