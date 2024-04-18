@@ -1,14 +1,14 @@
 import { CSSProperties } from 'styled-components';
-import { IconBaseProps } from 'react-icons';
 import { ButtonContainer, CenterDiv, Container, HelperText, Row } from './Button.styles';
+import { ReactNode } from 'react';
 
 interface AdditionalProps {
   disabled?: boolean;
   isLoading?: boolean;
   withNoText?: boolean;
   helperText?: string;
-  renderStartIcon?: (props: IconBaseProps) => JSX.Element;
-  renderEndIcon?: (props: IconBaseProps) => JSX.Element;
+  renderStartIcon?: () => ReactNode;
+  renderEndIcon?: () => ReactNode;
 }
 
 export interface ButtonProps extends AdditionalProps {
@@ -47,20 +47,12 @@ const Button = ({
         style={style}
       >
         {renderStartIcon && (
-          <Row style={{ marginRight: withNoText ? 0 : '5px' }}>
-            {renderStartIcon({
-              style: { color: 'white', width: 25, height: 25 },
-            })}
-          </Row>
+          <Row style={{ marginRight: withNoText ? 0 : '5px' }}>{renderStartIcon()}</Row>
         )}
         {isLoading && <img src={'/Spinner.gif'} alt="Spinner" width={30} />}
         {!withNoText && <CenterDiv>{isLoading ? 'Loading...' : text}</CenterDiv>}
         {renderEndIcon && (
-          <Row style={{ marginLeft: withNoText ? 0 : '5px' }}>
-            {renderEndIcon({
-              style: { color: 'white', width: 25, height: 25 },
-            })}
-          </Row>
+          <Row style={{ marginLeft: withNoText ? 0 : '5px' }}>{renderEndIcon()}</Row>
         )}
       </ButtonContainer>
       {helperText && <HelperText>{helperText}</HelperText>}
