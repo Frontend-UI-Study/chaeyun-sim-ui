@@ -1,9 +1,7 @@
-import { CSSProperties } from 'styled-components';
 import { ButtonContainer, CenterDiv, Container, HelperText, Row } from './Button.styles';
-import { ReactNode } from 'react';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 
 interface AdditionalProps {
-  disabled?: boolean;
   isLoading?: boolean;
   withNoText?: boolean;
   helperText?: string;
@@ -11,41 +9,26 @@ interface AdditionalProps {
   renderEndIcon?: () => ReactNode;
 }
 
-export interface ButtonProps extends AdditionalProps {
+export interface ButtonProps extends AdditionalProps, ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
   size?: 'xs' | 'sm' | 'md' | 'lg';
   variant: 'filled' | 'outlined' | 'ghost';
   color?: 'primary' | 'secondary' | 'default' | 'error' | 'success';
-  style?: CSSProperties;
-  onClick?: () => void;
 }
 
 const Button = ({
-  size = 'sm',
   text = 'Button',
-  color = 'primary',
   isLoading = false,
   withNoText = false,
-  variant,
   disabled,
   helperText,
-  style,
-  onClick,
   renderStartIcon,
   renderEndIcon,
+  ...props
 }: ButtonProps) => {
-  const checkDisabled = () => disabled || isLoading;
-
   return (
     <Container>
-      <ButtonContainer
-        size={size}
-        variant={variant}
-        color={color}
-        onClick={onClick}
-        disabled={checkDisabled()}
-        style={style}
-      >
+      <ButtonContainer {...props} disabled={disabled || isLoading}>
         {renderStartIcon && (
           <Row style={{ marginRight: withNoText ? 0 : '5px' }}>{renderStartIcon()}</Row>
         )}
