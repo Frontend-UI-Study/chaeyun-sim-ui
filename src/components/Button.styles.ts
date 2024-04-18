@@ -1,16 +1,10 @@
 import styled, { css } from 'styled-components';
 import { ButtonContainerProps } from './Button.interface';
 import { flexbox } from '../styles/common/flex-box';
-import { Colors, colors } from '../styles/theme';
+import { ColorKey, Colors, colors } from '../styles/theme';
 
 const flexCenter = () => `
   ${flexbox({ direction: 'row', justify: 'center', align: 'center' })}
-`;
-
-const getColorStyle = (color: keyof Colors, variant: string) => css`
-  background-color: ${variant === 'filled' ? colors[color].main : 'transparent'};
-  color: ${variant === 'filled' ? 'white' : colors[color].main};
-  border-color: ${variant === 'outlined' ? colors[color].main : 'transparent'};
 `;
 
 const getHoverBackgroundColor = (
@@ -50,11 +44,32 @@ const sizeStyles = css<ButtonContainerProps>`
 `;
 
 const colorStyles = css<ButtonContainerProps>`
-  ${props => props.color === 'primary' && getColorStyle('primary', props.variant!)}
-  ${props => props.color === 'secondary' && getColorStyle('secondary', props.variant!)}
-  ${props => props.color === 'default' && getColorStyle('default', props.variant!)}
-  ${props => props.color === 'error' && getColorStyle('error', props.variant!)}
-  ${props => props.color === 'success' && getColorStyle('success', props.variant!)}
+  ${props =>
+    props.variant === 'filled' &&
+    css`
+      background-color: ${props.disabled
+        ? colors.default.main
+        : colors[props.color as ColorKey['keys']].main};
+      color: white;
+      border: ${props.disabled
+        ? colors.default.main
+        : colors[props.color as ColorKey['keys']].main};
+    `}
+  ${props =>
+    props.variant === 'outlined' &&
+    css`
+      background-color: white;
+      border: 1px solid
+        ${props.disabled ? colors.default.main : colors[props.color as ColorKey['keys']].main};
+    `}
+
+    ${props =>
+    props.variant === 'ghost' &&
+    css`
+      background-color: white;
+      color: ${props.disabled ? colors.default.main : colors[props.color as ColorKey['keys']].main};
+      border: none;
+    `}
 `;
 
 const hoverStyles = css<ButtonContainerProps>`
