@@ -1,9 +1,12 @@
-import Button from './Button';
+import Button, { ButtonProps } from './Button';
 import type { Meta } from '@storybook/react';
 import { FaPlus } from 'react-icons/fa6';
 import { FaCheck } from 'react-icons/fa';
+import { FaPowerOff } from 'react-icons/fa6';
 import { MdDelete } from 'react-icons/md';
 import styled from 'styled-components';
+import { Colors } from 'src/styles/theme';
+import { useState } from 'react';
 
 const meta: Meta<typeof Button> = {
   component: Button,
@@ -14,9 +17,9 @@ const meta: Meta<typeof Button> = {
   },
   render: props => (
     <Wrapper>
-      <Button {...props} color="primary" />
-      <Button {...props} color="secondary" />
-      <Button {...props} color="default" />
+      {['primary', 'secondary', 'default'].map(item => (
+        <Button {...props} color={item as keyof Colors} />
+      ))}
     </Wrapper>
   ),
 };
@@ -73,12 +76,37 @@ export const Ghost = {
   },
 };
 
-export const Disabled = () => {
+export const Disabled = {
+  args: {
+    disabled: true,
+  },
+  render: (props: ButtonProps) => {
+    return (
+      <Wrapper>
+        {['filled', 'outlined', 'ghost'].map(item => (
+          <Button {...props} variant={item as 'filled' | 'outlined' | 'ghost'} />
+        ))}
+      </Wrapper>
+    );
+  },
+};
+
+export const Toggle = () => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => setIsClicked(!isClicked);
+
   return (
     <Wrapper>
-      <Button disabled variant="filled" />
-      <Button disabled variant="outlined" />
-      <Button disabled variant="ghost" />
+      <Button
+        size="xs"
+        color="secondary"
+        variant={isClicked ? 'outlined' : 'filled'}
+        onClick={handleClick}
+        style={{ borderRadius: 100 }}
+        renderStartIcon={() => <FaPowerOff />}
+        withNoText
+      />
     </Wrapper>
   );
 };
@@ -129,14 +157,20 @@ export const WithHelperText = {
   },
 };
 
-export const Loading = () => {
-  return (
-    <Wrapper>
-      <Button isLoading size="md" variant="outlined" />
-      <Button withNoText isLoading size="sm" variant="outlined" />
-      <Button withNoText isLoading size="xs" variant="outlined" />
-    </Wrapper>
-  );
+export const Loading = {
+  args: {
+    isLoading: true,
+    variant: 'outlined',
+  },
+  render: (props: ButtonProps) => {
+    return (
+      <Wrapper>
+        <Button {...props} size="md" />
+        <Button {...props} withNoText size="sm" />
+        <Button {...props} withNoText size="xs" />
+      </Wrapper>
+    );
+  },
 };
 
 export const ConfirmAndCancel = () => {
