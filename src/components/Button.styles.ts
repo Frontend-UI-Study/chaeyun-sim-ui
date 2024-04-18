@@ -1,16 +1,16 @@
 import styled, { css } from 'styled-components';
 import { ButtonContainerProps } from './Button.interface';
 import { flexbox } from '../styles/common/flex-box';
-import theme, { Colors } from 'src/styles/theme';
+import { Colors, colors } from '../styles/theme';
 
 const flexCenter = () => `
   ${flexbox({ direction: 'row', justify: 'center', align: 'center' })}
 `;
 
 const getColorStyle = (color: keyof Colors, variant: string) => css`
-  background-color: ${variant === 'filled' ? theme.colors[color].main : 'transparent'};
-  color: ${variant === 'filled' ? 'white' : theme.colors[color].main};
-  border-color: ${variant === 'outlined' ? theme.colors[color].main : 'transparent'};
+  background-color: ${variant === 'filled' ? colors[color].main : 'transparent'};
+  color: ${variant === 'filled' ? 'white' : colors[color].main};
+  border-color: ${variant === 'outlined' ? colors[color].main : 'transparent'};
 `;
 
 const getHoverBackgroundColor = (
@@ -18,7 +18,7 @@ const getHoverBackgroundColor = (
   variant: 'filled' | 'outlined' | 'ghost',
 ) => {
   if (variant === 'filled') {
-    return theme.colors[colorKey].dark;
+    return colors[colorKey].dark;
   }
   return 'transparent';
 };

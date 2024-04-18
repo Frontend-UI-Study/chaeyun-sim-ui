@@ -1,17 +1,17 @@
-interface ColorItems {
+interface ColorItem {
   main: string;
   dark: string;
 }
 
 export interface Colors {
-  primary: ColorItems;
-  secondary: ColorItems;
-  default: ColorItems;
-  error: ColorItems;
-  success: ColorItems;
+  primary: ColorItem;
+  secondary: ColorItem;
+  default: ColorItem;
+  error: ColorItem;
+  success: ColorItem;
 }
 
-const colors: Colors = {
+export const colors: Colors = {
   primary: {
     main: '#FE5027',
     dark: 'orange',
@@ -33,9 +33,3 @@ const colors: Colors = {
     dark: '#1B5E20',
   },
 };
-
-const theme = {
-  colors,
-};
-
-export default theme;
