@@ -124,7 +124,6 @@ export const Icon: Story = {
         />
         <Input
           variant={'outlined'}
-          type={isClicked ? 'text' : 'password'}
           placeholder={'닉네임을 입력해주세요'}
           renderStartIcon={() => <IoMdPerson />}
           value={value}
@@ -136,25 +135,11 @@ export const Icon: Story = {
 };
 
 export const Prefix: Story = {
-  render: () => {
-    const [value, setValue] = useState('');
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setValue(e.target.value);
-    };
-
-    return (
-      <StylesWrapper>
-        <Input
-          type="url"
-          variant="outlined"
-          placeholder={'URL을 입력해주세요'}
-          value={value}
-          onChangeValue={handleChange}
-          prefix={'https://'}
-        />
-      </StylesWrapper>
-    );
+  args: {
+    type: 'url',
+    variant: 'outlined',
+    placeholder: 'URL을 입력해주세요',
+    prefix: 'https://',
   },
 };
 
