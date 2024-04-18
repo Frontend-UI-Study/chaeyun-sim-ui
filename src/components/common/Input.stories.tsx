@@ -2,9 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Input from './Input';
 import { Variant } from './Input.interface';
 import { useState } from 'react';
-import { IoEye, IoEyeOffSharp } from 'react-icons/io5';
+import { IoEye, IoEyeOffSharp, IoSearchSharp } from 'react-icons/io5';
 import { IoMdPerson } from 'react-icons/io';
-import { IoSearchSharp } from 'react-icons/io5';
 import { StylesWrapper } from './Input.styles';
 
 const meta: Meta<typeof Input> = {
