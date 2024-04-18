@@ -152,7 +152,7 @@ export const Loading = () => {
   );
 };
 
-export const ConformAndCancel = () => {
+export const ConfirmAndCancel = () => {
   return (
     <Wrapper>
       <Button size="sm" variant="ghost" text="취소" color="secondary" />
