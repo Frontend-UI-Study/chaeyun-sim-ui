@@ -71,7 +71,7 @@ const Input = (props: InputProps) => {
             )}
             {withResetButton && (
               <ResetButton onClick={onReset}>
-                <img src="/public/close.png" alt="reset" width={15} />
+                <img src="/close.png" alt="reset" width={15} />
               </ResetButton>
             )}
           </div>
