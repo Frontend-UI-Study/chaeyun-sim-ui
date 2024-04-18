@@ -1,10 +1,10 @@
-import { css } from 'styled-components';
+import { CSSProperties, css } from 'styled-components';
 
 interface Flexbox {
-  direction?: string;
-  justify?: string;
-  align?: string;
-  gap?: string;
+  direction?: CSSProperties['flexDirection'];
+  justify?: CSSProperties['justifyContent'];
+  align?: CSSProperties['alignItems'];
+  gap?: CSSProperties['gap'];
 }
 
 export const flexbox = ({ direction, justify, align, gap }: Flexbox) => css`
