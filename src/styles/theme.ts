@@ -3,6 +3,10 @@ interface ColorItem {
   dark: string;
 }
 
+export interface ColorKey {
+  keys: 'primary' | 'secondary' | 'default' | 'error' | 'success';
+}
+
 export interface Colors {
   primary: ColorItem;
   secondary: ColorItem;

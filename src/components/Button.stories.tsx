@@ -12,86 +12,73 @@ const meta: Meta<typeof Button> = {
   parameters: {
     layout: 'centered',
   },
+  render: props => (
+    <Wrapper>
+      <Button {...props} color="primary" />
+      <Button {...props} color="secondary" />
+      <Button {...props} color="default" />
+    </Wrapper>
+  ),
 };
 
 export default meta;
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
 `;
 
-const ColumnRow = styled(Wrapper)`
-  flex-direction: column;
-`;
-
-export const Large = () => {
-  return (
-    <ColumnRow>
-      <Button variant="filled" color="primary" size="lg" />
-      <Button variant="filled" color="secondary" size="lg" />
-      <Button variant="filled" color="default" size="lg" />
-    </ColumnRow>
-  );
+export const Large = {
+  args: {
+    variant: 'filled',
+    size: 'lg',
+  },
 };
 
-export const Medium = () => {
-  return (
-    <ColumnRow>
-      <Button variant="filled" color="primary" size="md" />
-      <Button variant="filled" color="secondary" size="md" />
-      <Button variant="filled" color="default" size="md" />
-    </ColumnRow>
-  );
+export const Medium = {
+  args: {
+    variant: 'filled',
+    size: 'md',
+  },
 };
 
-export const Small = () => {
-  return (
-    <Wrapper>
-      <Button variant="filled" color="primary" size="sm" />
-      <Button variant="filled" color="secondary" size="sm" />
-      <Button variant="filled" color="default" size="sm" />
-    </Wrapper>
-  );
+export const Small = {
+  args: {
+    variant: 'filled',
+    size: 'sm',
+  },
 };
 
-export const X_Small = () => {
-  return (
-    <Wrapper>
-      <Button variant="filled" color="primary" size="xs" text="B" />
-      <Button variant="filled" color="secondary" size="xs" text="B" />
-      <Button variant="filled" color="default" size="xs" text="B" />
-    </Wrapper>
-  );
+export const XSmall = {
+  args: {
+    variant: 'filled',
+    size: 'sx',
+  },
 };
 
-export const Outlined = () => {
-  return (
-    <Wrapper>
-      <Button variant="outlined" color="primary" />
-      <Button variant="outlined" color="secondary" />
-      <Button variant="outlined" color="default" />
-    </Wrapper>
-  );
+export const Outlined = {
+  args: {
+    variant: 'outlined',
+    size: 'md',
+  },
 };
 
-export const Ghost = () => {
-  return (
-    <Wrapper>
-      <Button variant="ghost" color="primary" />
-      <Button variant="ghost" color="secondary" />
-      <Button variant="ghost" color="default" />
-    </Wrapper>
-  );
+export const Ghost = {
+  args: {
+    variant: 'ghost',
+    size: 'md',
+  },
 };
 
 export const Disabled = () => {
   return (
     <Wrapper>
-      <Button disabled variant="filled" color="default" />
-      <Button disabled variant="outlined" color="default" />
+      <Button disabled variant="filled" />
+      <Button disabled variant="outlined" />
+      <Button disabled variant="ghost" />
     </Wrapper>
   );
 };
@@ -134,29 +121,29 @@ export const OnlyIcon = () => {
     </Wrapper>
   );
 };
-export const WithHelperText = () => {
-  return (
-    <Wrapper>
-      <Button variant="ghost" color="secondary" helperText={'버튼을 클릭해주세요.'} />
-    </Wrapper>
-  );
+
+export const WithHelperText = {
+  args: {
+    variant: 'outlined',
+    helperText: '버튼을 클릭해주세요.',
+  },
 };
 
 export const Loading = () => {
   return (
     <Wrapper>
-      <Button isLoading size="md" variant="outlined" color="default" />
-      <Button withNoText isLoading size="sm" variant="outlined" color="default" />
-      <Button withNoText isLoading size="xs" variant="outlined" color="default" />
+      <Button isLoading size="md" variant="outlined" />
+      <Button withNoText isLoading size="sm" variant="outlined" />
+      <Button withNoText isLoading size="xs" variant="outlined" />
     </Wrapper>
   );
 };
 
 export const ConfirmAndCancel = () => {
   return (
-    <Wrapper>
+    <div style={{ display: 'flex' }}>
       <Button size="sm" variant="ghost" text="취소" color="secondary" />
       <Button variant="filled" color="primary" size="sm" text="확인" />
-    </Wrapper>
+    </div>
   );
 };

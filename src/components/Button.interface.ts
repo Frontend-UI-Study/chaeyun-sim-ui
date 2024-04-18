@@ -6,4 +6,5 @@ export interface ButtonContainerProps {
   color?: keyof Colors;
   isBottomFixed?: boolean;
   disabled?: boolean;
+  isLoading?: boolean;
 }

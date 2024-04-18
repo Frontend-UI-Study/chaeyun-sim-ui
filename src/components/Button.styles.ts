@@ -47,11 +47,11 @@ const colorStyles = css<ButtonContainerProps>`
   ${props =>
     props.variant === 'filled' &&
     css`
-      background-color: ${props.disabled
+      background-color: ${props.disabled || props.isLoading
         ? colors.default.main
         : colors[props.color as ColorKey['keys']].main};
       color: white;
-      border: ${props.disabled
+      border: ${props.disabled || props.isLoading
         ? colors.default.main
         : colors[props.color as ColorKey['keys']].main};
     `}
@@ -60,14 +60,18 @@ const colorStyles = css<ButtonContainerProps>`
     css`
       background-color: white;
       border: 1px solid
-        ${props.disabled ? colors.default.main : colors[props.color as ColorKey['keys']].main};
+        ${props.disabled || props.isLoading
+          ? colors.default.main
+          : colors[props.color as ColorKey['keys']].main};
     `}
 
     ${props =>
     props.variant === 'ghost' &&
     css`
       background-color: white;
-      color: ${props.disabled ? colors.default.main : colors[props.color as ColorKey['keys']].main};
+      color: ${props.disabled || props.isLoading
+        ? colors.default.main
+        : colors[props.color as ColorKey['keys']].main};
       border: none;
     `}
 `;
@@ -75,7 +79,9 @@ const colorStyles = css<ButtonContainerProps>`
 const hoverStyles = css<ButtonContainerProps>`
   &:hover {
     background-color: ${props =>
-      props.disabled ? 'none' : getHoverBackgroundColor(props.color!, props.variant!)};
+      props.disabled || props.isLoading
+        ? 'none'
+        : getHoverBackgroundColor(props.color!, props.variant!)};
     text-decoration: ${props => (props.variant === 'ghost' ? 'underline' : 'none')};
   }
 `;
