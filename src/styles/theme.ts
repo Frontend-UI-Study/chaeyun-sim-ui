@@ -18,7 +18,7 @@ export interface Colors {
 export const colors: Colors = {
   primary: {
     main: '#FE5027',
-    dark: 'orange',
+    dark: '#ff3300',
   },
   secondary: {
     main: '#414141',
