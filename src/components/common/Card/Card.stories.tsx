@@ -62,6 +62,15 @@ export const CoverImage: Story = {
       <Wrapper>
         <Card {...props} />
         <Card {...props} cardTitle="제목입니다." />
+        <Card
+          {...props}
+          cardTitle="제목입니다."
+          renderFooter={() => (
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <Button text="확인" variant="filled" color="primary" size="lg" />
+            </div>
+          )}
+        />
       </Wrapper>
     );
   },
@@ -119,36 +128,56 @@ export const Text: Story = {
   },
 };
 
+const Buttons = () => {
+  const [isClicked, setIsClicked] = useState(false);
+  const handleClick = () => setIsClicked(!isClicked);
+
+  return (
+    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+      <Button
+        variant="ghost"
+        color="secondary"
+        text="Like"
+        renderStartIcon={() => (isClicked ? <BiSolidLike /> : <BiLike />)}
+        onClick={handleClick}
+      />
+      <Button
+        variant="ghost"
+        color="secondary"
+        text="Comment"
+        renderStartIcon={() => <VscCommentDiscussion />}
+      />
+      <Button variant="ghost" color="secondary" text="Share" renderStartIcon={() => <BiShare />} />
+    </div>
+  );
+};
+
+export const TextWithFooter: Story = {
+  args: {
+    showImage: false,
+  },
+  render: props => {
+    return (
+      <Wrapper>
+        <Card {...props} renderFooter={() => <Buttons />} />
+        <Card
+          {...props}
+          cardTitle="제목입니다."
+          containerStyle={{ paddingTop: '7px' }}
+          renderFooter={() => (
+            <div style={{ display: 'flex', width: '100%', justifyContent: 'flex-end' }}>
+              <Button text="취소" color="secondary" variant="ghost" size="sm" />
+              <Button text="확인" color="primary" variant="filled" size="sm" />
+            </div>
+          )}
+        />
+      </Wrapper>
+    );
+  },
+};
+
 export const Footer: Story = {
   args: {
-    renderFooter: () => {
-      const [isClicked, setIsClicked] = useState(false);
-
-      const handleClick = () => setIsClicked(!isClicked);
-
-      return (
-        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-          <Button
-            variant="ghost"
-            color="secondary"
-            text="Like"
-            renderStartIcon={() => (isClicked ? <BiSolidLike /> : <BiLike />)}
-            onClick={handleClick}
-          />
-          <Button
-            variant="ghost"
-            color="secondary"
-            text="Comment"
-            renderStartIcon={() => <VscCommentDiscussion />}
-          />
-          <Button
-            variant="ghost"
-            color="secondary"
-            text="Share"
-            renderStartIcon={() => <BiShare />}
-          />
-        </div>
-      );
-    },
+    renderFooter: () => <Buttons />,
   },
 };
