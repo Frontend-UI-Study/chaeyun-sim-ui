@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { ButtonContainerProps } from './Button.interface';
-import { flexbox } from '../styles/common/flex-box';
-import { ColorKey, Colors, colors } from '../styles/theme';
+import { flexbox } from '../../../styles/common/flex-box';
+import { ColorKey, Colors, colors } from '../../../styles/theme';
 
 const flexCenter = () => `
   ${flexbox({ direction: 'row', justify: 'center', align: 'center' })}
