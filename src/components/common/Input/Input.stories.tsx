@@ -9,6 +9,7 @@ import { StylesWrapper } from './Input.styles';
 const meta: Meta<typeof Input> = {
   component: Input,
   title: 'Components/Input',
+  tags: ['autodocs'],
   render: props => {
     const [values, setValues] = useState({
       outlined: '',
