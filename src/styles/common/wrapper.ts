@@ -5,7 +5,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
 `;
 
 export default Wrapper;
