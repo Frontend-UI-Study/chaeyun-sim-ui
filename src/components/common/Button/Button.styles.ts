@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { ButtonContainerProps } from './Button.interface';
 import { flexbox } from '../../../styles/common/flex-box';
-import { ColorKey, Colors, colors } from '../../../styles/theme';
+import theme, { ColorKey, Colors } from '../../../styles/theme';
 
 const flexCenter = () => `
   ${flexbox({ direction: 'row', justify: 'center', align: 'center' })}
@@ -12,7 +12,7 @@ const getHoverBackgroundColor = (
   variant: 'filled' | 'outlined' | 'ghost',
 ) => {
   if (variant === 'filled') {
-    return colors[colorKey].dark;
+    return theme.colors[colorKey].dark;
   }
   return 'transparent';
 };
@@ -48,12 +48,12 @@ const colorStyles = css<ButtonContainerProps>`
     props.variant === 'filled' &&
     css`
       background-color: ${props.disabled || props.isLoading
-        ? colors.default.main
-        : colors[props.color as ColorKey['keys']].main};
+        ? theme.colors.default.main
+        : theme.colors[props.color as ColorKey['keys']].main};
       color: white;
       border: ${props.disabled || props.isLoading
-        ? colors.default.main
-        : colors[props.color as ColorKey['keys']].main};
+        ? theme.colors.default.main
+        : theme.colors[props.color as ColorKey['keys']].main};
     `}
   ${props =>
     props.variant === 'outlined' &&
@@ -61,8 +61,8 @@ const colorStyles = css<ButtonContainerProps>`
       background-color: white;
       border: 1px solid
         ${props.disabled || props.isLoading
-          ? colors.default.main
-          : colors[props.color as ColorKey['keys']].main};
+          ? theme.colors.default.main
+          : theme.colors[props.color as ColorKey['keys']].main};
     `}
 
     ${props =>
@@ -70,8 +70,8 @@ const colorStyles = css<ButtonContainerProps>`
     css`
       background-color: white;
       color: ${props.disabled || props.isLoading
-        ? colors.default.main
-        : colors[props.color as ColorKey['keys']].main};
+        ? theme.colors.default.main
+        : theme.colors[props.color as ColorKey['keys']].main};
       border: none;
     `}
 `;

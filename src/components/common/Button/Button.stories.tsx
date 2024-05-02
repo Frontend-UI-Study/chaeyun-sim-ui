@@ -4,9 +4,9 @@ import { FaPlus } from 'react-icons/fa6';
 import { FaCheck } from 'react-icons/fa';
 import { FaPowerOff } from 'react-icons/fa6';
 import { MdDelete } from 'react-icons/md';
-import { Colors } from 'src/styles/theme';
+import { Colors } from '../../../styles/theme';
 import { useState } from 'react';
-import Wrapper from './../../../styles/common/wrapper';
+import Wrapper from '../../../styles/common/wrapper';
 
 const meta: Meta<typeof Button> = {
   component: Button,
