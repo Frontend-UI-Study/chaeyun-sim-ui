@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Card from './Card';
-import styled from 'styled-components';
 import Button from '../Button/Button';
 import { BiLike, BiShare, BiSolidLike } from 'react-icons/bi';
 import { VscCommentDiscussion } from 'react-icons/vsc';
 import { useState } from 'react';
+import Wrapper from './../../../styles/common/wrapper';
 
 const meta: Meta<typeof Card> = {
   component: Card,
@@ -22,14 +22,6 @@ const meta: Meta<typeof Card> = {
 };
 
 export default meta;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-`;
 
 type Story = StoryObj<typeof Card>;
 

@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
 import HorizontalCard from './HorizontalCard';
 import Button from '../Button/Button';
-import styled from 'styled-components';
 import { useState } from 'react';
 import { BiLike, BiSolidLike } from 'react-icons/bi';
 import { VscCommentDiscussion } from 'react-icons/vsc';
+import Wrapper from './../../../styles/common/wrapper';
 
 const meta: Meta<typeof HorizontalCard> = {
   component: HorizontalCard,
@@ -23,13 +23,6 @@ const meta: Meta<typeof HorizontalCard> = {
 };
 
 export default meta;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
-`;
 
 type Story = StoryObj<typeof HorizontalCard>;
 
