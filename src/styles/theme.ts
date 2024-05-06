@@ -15,7 +15,7 @@ export interface Colors {
   success: ColorItem;
 }
 
-export const colors: Colors = {
+const colors: Colors = {
   primary: {
     main: '#FE5027',
     dark: '#ff3300',
@@ -37,3 +37,9 @@ export const colors: Colors = {
     dark: '#1B5E20',
   },
 };
+
+const theme = {
+  colors,
+};
+
+export default theme;

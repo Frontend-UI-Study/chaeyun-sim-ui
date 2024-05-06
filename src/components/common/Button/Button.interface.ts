@@ -1,4 +1,4 @@
-import { Colors } from 'src/styles/theme';
+import { Colors } from '../../../styles/theme';
 
 export interface ButtonContainerProps {
   size?: 'xs' | 'sm' | 'md' | 'lg';
