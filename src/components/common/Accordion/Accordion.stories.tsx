@@ -167,7 +167,7 @@ export const ExpandIconPositionHide: Story = {
   args: {
     size: 'sm',
     variant: 'outlined',
-    expandIconPosition: 'hide',
+    hideExpandIcon: true,
   },
 };
 

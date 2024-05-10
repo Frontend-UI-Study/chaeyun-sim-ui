@@ -13,7 +13,7 @@ export interface AccordionItem {
 }
 
 interface AdditionalProps {
-  expandIconPosition?: 'right' | 'left' | 'hide';
+  expandIconPosition?: 'right' | 'left';
   subtitlePosition?: 'title' | 'desc' | 'none';
   hideExpandIcon?: boolean;
 }
