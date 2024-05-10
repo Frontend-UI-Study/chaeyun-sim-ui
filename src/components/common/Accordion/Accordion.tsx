@@ -35,8 +35,8 @@ const Accordion = ({
         ? theme.colors.secondary.main
         : '#fbfbfb';
 
-  const ExpandIcon = () => (!isOpen ? <MdExpandLess /> : <MdOutlineExpandMore />);
-  const CustomIcon = () => (!isOpen ? item.customExpandIcon!.close : item.customExpandIcon!.open);
+  const ExpandIcon = () => (isOpen ? <MdOutlineExpandMore /> : <MdExpandLess />);
+  const CustomIcon = () => (isOpen ? item.customExpandIcon!.open : item.customExpandIcon!.close);
   const Icon = (location: 'left' | 'right') =>
     !hideExpandIcon &&
     expandIconPosition === location &&
