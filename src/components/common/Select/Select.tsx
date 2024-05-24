@@ -21,9 +21,9 @@ export interface SelectProps {
   placeholder?: string;
   size?: 'lg' | 'md' | 'sm';
   isMultiSelection?: boolean;
-  multiIconVariant?: 'toggle' | 'color';
   multiSelectionLimit?: number;
   helperText?: string;
+  hasIcon: boolean;
 }
 
 const Select = ({
@@ -43,7 +43,7 @@ const Select = ({
   };
 
   const handleSelect = (value: string) => {
-    if (isMultiSelection && selectedList.length < props.multiSelectionLimit!) {
+    if (isMultiSelection) {
       if (selectedList.includes(value)) {
         setSelectedList(selectedList.filter(el => el !== value));
       } else {
@@ -52,6 +52,14 @@ const Select = ({
     } else {
       setSelectedValue(value);
       setIsOpen(false);
+    }
+  };
+
+  const handleSelectLimit = (value: string) => {
+    if (selectedList.includes(value) && selectedList.length < props.multiSelectionLimit!) {
+      setSelectedList(selectedList.filter(el => el !== value));
+    } else if (!selectedList.includes(value) && selectedList.length < props.multiSelectionLimit!) {
+      setSelectedList([...selectedList, value]);
     }
   };
 
@@ -94,19 +102,22 @@ const Select = ({
                 key={item}
                 isMultiSelection={isMultiSelection}
                 isSelected={selectedList.includes(item) || selectedValue === item}
-                onClick={() => handleSelect(item)}
+                onClick={() =>
+                  props.multiSelectionLimit ? handleSelectLimit(item) : handleSelect(item)
+                }
               >
-                {selectedList && selectedList.includes(item) ? (
+                {isMultiSelection && selectedList.includes(item) && (
                   <IoIosCheckmarkCircle
                     style={{ marginRight: '8px', marginBottom: '1px' }}
                     size={17}
                   />
-                ) : (
+                )}
+                {isMultiSelection && !selectedList.includes(item) && (
                   <IoIosCheckmarkCircleOutline style={{ marginRight: '8px' }} size={17} />
                 )}
                 {item}
                 {!isMultiSelection && selectedValue === item && (
-                  <FaCheck color={theme.colors.success.main} />
+                  <FaCheck color={theme.colors.success.main} size={14} />
                 )}
               </SelectItem>
             ))}
