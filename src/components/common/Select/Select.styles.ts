@@ -50,32 +50,13 @@ const variantStyle = css<Pick<SelectProps, 'variant'>>`
     `}
 `;
 
-const sizeStyle = css<Pick<SelectProps, 'size'>>`
-  ${props =>
-    props.size === 'lg' &&
-    css`
-      width: 250px;
-    `}
-
-  ${props =>
-    props.size === 'md' &&
-    css`
-      width: 180px;
-    `}
-
-    ${props =>
-    props.size === 'sm' &&
-    css`
-      width: 120px;
-    `}
-`;
-
 export const SelectTrigger = styled.div<Pick<SelectProps, 'variant' | 'size'>>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 10px 10px 5px;
   border-radius: 8px;
+  width: calc(100% - 17px);
   height: 14px;
   font-size: 14px;
   overflow-x: scroll;
@@ -86,7 +67,6 @@ export const SelectTrigger = styled.div<Pick<SelectProps, 'variant' | 'size'>>`
   }
 
   ${variantStyle}
-  ${sizeStyle}
 `;
 
 export const SelectValue = styled.div`
