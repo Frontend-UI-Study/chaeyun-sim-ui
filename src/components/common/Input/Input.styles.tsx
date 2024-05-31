@@ -6,7 +6,6 @@ export const Row = styled.div`
   align-items: center;
   gap: 8px;
   position: relative;
-  width: 270px;
   margin-top: 8px;
 `;
 
@@ -48,7 +47,6 @@ const colorStyle = css<Pick<InputProps, 'variant' | 'error' | 'disabled'>>`
 `;
 
 export const Wrapper = styled.div<Pick<InputProps, 'variant' | 'error' | 'disabled'>>`
-  width: 270px;
   height: 36px;
   position: relative;
   display: flex;
@@ -62,8 +60,6 @@ export const Wrapper = styled.div<Pick<InputProps, 'variant' | 'error' | 'disabl
 `;
 
 export const StyledInput = styled.input`
-  width: 100%;
-  max-width: 270px;
   box-sizing: border-box;
   height: 100%;
   background-color: transparent;

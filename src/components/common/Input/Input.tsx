@@ -20,6 +20,7 @@ export interface InputProps extends AdditionalProps, Variant {
   onFocus?: () => void;
   onBlur?: () => void;
   style?: CSSProperties;
+  inputStyles?: CSSProperties;
 }
 
 const Input = (props: InputProps) => {
@@ -40,13 +41,14 @@ const Input = (props: InputProps) => {
     onStartIconClick,
     onEndIconClick,
     renderButton,
+    inputStyles,
     ...rest
   } = props;
 
   return (
     <div>
       <label style={{ fontSize: '15px', fontWeight: 500 }}>{label}</label>
-      <Row>
+      <Row style={props.style}>
         <Wrapper variant={variant} error={error} disabled={rest.disabled}>
           {renderStartIcon && (
             <Adornment left onClick={onStartIconClick}>
@@ -60,6 +62,7 @@ const Input = (props: InputProps) => {
               onChange={onChangeValue}
               maxLength={maxLength}
               disabled={rest.disabled}
+              style={inputStyles}
             />
           )}
           <div style={{ display: 'flex' }}>
@@ -69,7 +72,7 @@ const Input = (props: InputProps) => {
                 {rest.value.length}/{maxLength}
               </LetterCounting>
             )}
-            {withResetButton && (
+            {props.value && withResetButton && (
               <ResetButton onClick={onReset}>
                 <img src="/close.png" alt="reset" width={15} />
               </ResetButton>
