@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import Trigger from './Trigger';
 import Content from './Content';
 import Item from './Item';
-import Menu from './menu';
 import Divider from './Divider';
+import Menu from './Menu';
 
 const Menubar = ({ children, ...props }: PropsWithChildren<MenubarProps>) => {
   const menubarRef = useRef<HTMLDivElement>(null);
