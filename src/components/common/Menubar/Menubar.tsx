@@ -14,6 +14,7 @@ const Menubar = ({ children, ...props }: PropsWithChildren<MenubarProps>) => {
   const [isTriggerClicked, setIsTriggerClicked] = useState(false);
 
   useEffect(() => {
+    // menubar 외부 클릭 시 드롭다운 닫기 및 toggle off
     const handleClickOutside = (event: MouseEvent) => {
       if (menubarRef.current && !menubarRef.current.contains(event.target as Node)) {
         setCurrentOpenDropdown('');

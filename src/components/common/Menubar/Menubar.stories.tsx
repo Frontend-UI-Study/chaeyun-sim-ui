@@ -15,7 +15,11 @@ const meta: Meta<typeof Menubar> = {
             {props.data[key].map((item, index) => (
               <div key={index}>
                 {item.map(element => (
-                  <Menubar.Item key={element.title} suffix={element.suffix}>
+                  <Menubar.Item
+                    key={element.title}
+                    suffix={element.suffix}
+                    disabled={element.disabled}
+                  >
                     {element.title}
                   </Menubar.Item>
                 ))}

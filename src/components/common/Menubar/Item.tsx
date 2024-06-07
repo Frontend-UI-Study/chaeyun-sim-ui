@@ -6,20 +6,21 @@ import { useMenubarContext } from './context';
 interface MenubarItemProps {
   isLastItem?: boolean;
   suffix?: string | ReactNode;
-  onMouseDown?: () => void;
+  disabled?: boolean;
 }
 
-const Item = ({ children, suffix, onMouseDown }: PropsWithChildren<MenubarItemProps>) => {
+const Item = ({ children, suffix, disabled }: PropsWithChildren<MenubarItemProps>) => {
   const { onSetClickedItem, onSetCurrentOpenDropdown, onSetIsTriggerClicked } = useMenubarContext();
 
   return (
     <ItemBox
+      // 클릭된 아이템 저장, 드롭다운 닫기, toggle off
       onClick={() => {
         onSetClickedItem(children as string);
         onSetCurrentOpenDropdown('');
         onSetIsTriggerClicked(false);
       }}
-      onMouseDown={onMouseDown}
+      disabled={disabled!}
     >
       {children}
       <Suffix>{typeof suffix === 'string' ? <ShortCut>{suffix}</ShortCut> : suffix}</Suffix>
@@ -29,22 +30,23 @@ const Item = ({ children, suffix, onMouseDown }: PropsWithChildren<MenubarItemPr
 
 export default Item;
 
-const ItemBox = styled.div`
+const ItemBox = styled.div<{ disabled: boolean }>`
   background-color: #fdfdfd;
   border-radius: 4px;
   font-size: 13px;
   padding: 5px;
-  cursor: pointer;
+  cursor: ${props => (props.disabled ? 'default' : 'pointer')};
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: ${props => (props.disabled ? 'gray' : 'black')};
 
   &:hover {
-    background-color: ${theme.colors.primary.main};
-    color: white;
+    background-color: ${props => (props.disabled ? '#fdfdfd' : theme.colors.primary.main)};
+    color: ${props => (props.disabled ? 'gray' : 'white')};
 
     & > div {
-      color: white;
+      color: ${props => (props.disabled ? 'black' : 'white')};
     }
   }
 `;

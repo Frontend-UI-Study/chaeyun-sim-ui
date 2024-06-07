@@ -7,10 +7,12 @@ const Trigger = ({ children }: PropsWithChildren) => {
 
   return (
     <TriggerBox
+      // 트리거를 클릭하면 toggle on, 현재 드롭다운 표시
       onClick={() => {
         onSetIsTriggerClicked(true);
         onSetCurrentOpenDropdown(children as string);
       }}
+      // toggle on이라면 hover 시 드롭다운 표시
       onMouseOver={() => isTriggerClicked && onSetCurrentOpenDropdown(children as string)}
     >
       {children}

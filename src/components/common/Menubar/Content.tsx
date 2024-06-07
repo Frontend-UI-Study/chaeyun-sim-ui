@@ -5,6 +5,7 @@ import { useMenubarContext } from './context';
 const Content = ({ children, parent }: PropsWithChildren<{ parent: string }>) => {
   const { currentOpenDropdown } = useMenubarContext();
 
+  // trigger에서 선택한 요소와 parent가 같다면 표시
   if (currentOpenDropdown !== parent) {
     return null;
   }
