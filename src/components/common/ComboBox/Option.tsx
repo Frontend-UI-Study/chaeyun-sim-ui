@@ -35,7 +35,7 @@ const Option = ({ item, noHighLight, index }: OptionProps) => {
     <ComboBoxOptionBox>
       <ComboBoxOption
         $isCurrent={Number(currentIndex) === index}
-        onMouseDown={() => onSetClickedItem(item)}
+        onClick={() => onSetClickedItem(item)}
       >
         {highlightItem()}
       </ComboBoxOption>

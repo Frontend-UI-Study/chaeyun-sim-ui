@@ -55,7 +55,11 @@ const Trigger = () => {
       <Input
         value={keyword}
         onChangeValue={handleChange}
-        onBlur={() => onSetOpenDropdown(false)}
+        onBlur={() => {
+          setTimeout(() => {
+            onSetOpenDropdown(false);
+          }, 1000);
+        }}
         variant="outlined"
         placeholder={placeholder}
         onFocus={() => onSetOpenDropdown(true)}
